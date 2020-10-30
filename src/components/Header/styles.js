@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { THEME } from '../../constants';
 
 export const StyledHeader = styled.header`
-  background-color: #7f95d1;
+  background-color: ${THEME.PRIMARY};
   padding: 24px;
 `;
 
@@ -29,4 +30,9 @@ export const StyledListItem = styled.li`
 export const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: ${THEME.FONT_COLOR};
+  }
 `;

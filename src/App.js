@@ -1,26 +1,29 @@
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Login from './pages/Login';
+import Create from './pages/Create';
 import Tickets from './pages/Tickets';
 
 import Header from './components/Header';
+import { StyledContainer } from './styles';
 
 function App() {
   return (
     <>
       <Header/>
-      <Switch>
-        <Route path="/login">
-          <Login/>
-        </Route>
-        <Route path="/tickets">
-          <Tickets/>
-        </Route>
-        <Route path="/">
-          <Home/>
-        </Route>
-      </Switch>
+      <StyledContainer>
+        <Switch>
+          <Route path="/login">
+            <Create/>
+          </Route>
+          <Route path="/tickets">
+            <Tickets/>
+          </Route>
+          <Route path="/">
+            <Home/>
+          </Route>
+        </Switch>
+      </StyledContainer>
     </>
   );
 }
