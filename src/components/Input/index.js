@@ -32,7 +32,7 @@ Input.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   error: PropTypes.instanceOf(Object),
-  // inputRef: PropTypes.func.isRequired,
+  inputRef: PropTypes.func.isRequired,
 };
 
 export default Input;

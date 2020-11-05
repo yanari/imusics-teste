@@ -13,7 +13,7 @@ function App() {
       <Header/>
       <StyledContainer>
         <Switch>
-          <Route path="/login">
+          <Route path="/create">
             <Create/>
           </Route>
           <Route path="/tickets">

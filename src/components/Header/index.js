@@ -18,8 +18,8 @@ const Header = () => {
             </StyledLink>
           </StyledListItem>
           <StyledListItem>
-            <StyledLink to="/login">
-              Login
+            <StyledLink to="/create">
+              Create Ticket
             </StyledLink>
           </StyledListItem>
           <StyledListItem>
