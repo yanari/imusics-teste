@@ -1,48 +1,90 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import Tag from '../../Tag';
 import {
   StyledInputTagsContainer,
   StyledInputTags,
   StyledTagList,
-  StyledTag,
   StyledInputTagsLabel,
 } from './styles';
 
-const InputTags = ({ initialTags, inputName, inputLabel }) => {
+const InputTags = (props) => {
+  const {
+    initialTags,
+    label,
+    name,
+    handleSelectedTags,
+  } = props;
+  const {
+    register,
+    watch,
+    setValue,
+  } = useForm();
   const [tags, setTags] = useState(initialTags);
-  console.log(tags);
-  const handleKeyPress = (event) => {
-    if (event.key === ',') {
-      setTags([
-        ...tags,
-        event.target.value,
-      ]);
-      event.target.value = '';
+  
+  const handleChange = () => {
+    const keyPressed = watch(name).slice(watch(name).length - 1);
+    if (keyPressed === ',') {
+      const tag = watch(name).slice(0, -1);
+      setTags([ ...tags, tag ]);
+      setValue(name, '');
+      handleSelectedTags([ ...tags, tag ]);
     }
-    // converter componente pra classe
-    // event.target.value = ''; no callback function do setState ou usar o form hook?
-    if (event.key === 'Backspace' && event.target.value === '' && tags.length > 0) {
+  };
+
+  const handleKeyDown = (event) => {
+    const isBackspace = event.key === 'Backspace';
+    if (isBackspace) {
+      handleDeleteTag();
+    }
+  };
+
+  const handleDeleteTag = (tagName) => {
+    if (tagName) {
+      const filteredTags = tags.filter(tag => tag !== tagName);
+      setTags(filteredTags);
+      return;
+    }
+    if (tags.length > 0 && watch(name) === '') {
       const filteredTags = tags.slice(0, -1);
       setTags(filteredTags);
     }
+    handleSelectedTags(tags);
   };
 
   return (
     <>
-      {inputLabel && <StyledInputTagsLabel>{inputLabel}</StyledInputTagsLabel>}
+      {label && <StyledInputTagsLabel>{label}</StyledInputTagsLabel>}
       <StyledInputTagsContainer>
         {tags && (
           <StyledTagList>
-            {tags.map(tag => <StyledTag key={tag}>{tag}</StyledTag>)}
+            {tags.map(tag => (
+              <Tag
+                key={tag}
+                tagName={tag}
+                handleDelete={handleDeleteTag}
+              />
+            ))}
           </StyledTagList>
         )}
         <StyledInputTags
-          label={inputLabel}
-          name={inputName}
-          onKeyDown={handleKeyPress}
+          label={label}
+          name={name}
+          ref={register}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
       </StyledInputTagsContainer>
     </>
   );
+};
+
+InputTags.propTypes = {
+  initialTags: PropTypes.array,
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  handleSelectedTags: PropTypes.func.isRequired,
 };
 
 InputTags.defaultProps = {

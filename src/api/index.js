@@ -19,12 +19,10 @@ export const login = async () => {
   }
 };
 
-export const createTicket = async (title, description, category) => {
+export const createTicket = async (title, description, categories) => {
   const response = await axiosInstance.post('/tickets', {
     summary: title,
-    tags: [
-      category,
-    ],
+    tags: categories,
     comments: {
       description: {
         content: description,

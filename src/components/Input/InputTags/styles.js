@@ -8,6 +8,12 @@ export const StyledInputTagsContainer = styled(StyledContainer)`
   border: 1px solid;
   border-radius: 2px;
   display: flex;
+
+  &:focus,
+  &:active,
+  &:hover {
+    border: 1px solid ${THEME.PRIMARY};
+  }
 `;
 
 export const StyledInputTags = styled.input`
@@ -20,22 +26,7 @@ export const StyledInputTags = styled.input`
 
 export const StyledTagList = styled.ul`
   display: flex;
-  font-size: 12px;
   margin: 0 0 0 4px;
-`;
-
-export const StyledTag = styled.li`
-  background-color: ${THEME.PRIMARY};
-  border-radius: 4px;
-  color: white;
-  flex-grow: 1;
-  list-style-type: none;
-  margin-right: 4px;
-  padding: 4px 8px;
-
-  &:last-of-type {
-    margin-right: 0
-  }
 `;
 
 export const StyledInputTagsLabel = styled(StyledLabel)`

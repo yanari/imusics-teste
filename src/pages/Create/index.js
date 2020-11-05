@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/Input';
@@ -14,15 +14,16 @@ import {
 
 const Create = () => {
   const history = useHistory();
+  const [categories, setCategories] = useState();
   const { errors, handleSubmit, register } = useForm();
 
   useEffect(() => {
-    const token = localStorage.getItem('OCTADESK_TOKEN');
-    if (token === null) login();
+    login();
   }, []);
 
-  const onSubmit = async ({ title, category, description }) => {
-    const response = await createTicket(title, description, category);
+  const onSubmit = async ({ title, description }) => {
+    console.log(categories);
+    const response = await createTicket(title, description, categories);
     localStorage.setItem('ID_REQUESTER', response.idRequester)
     history.push('/tickets');
   };
@@ -38,16 +39,9 @@ const Create = () => {
         })}
       />
       <InputTags
-        inputLabel="Categoria"
-        inputName="category"
-      />
-      <Input
-        name="category"
-        error={errors.category}
         label="Categoria"
-        inputRef={register({
-          required: 'A categoria é obrigatória.',
-        })}
+        name="category"
+        handleSelectedTags={(tags) => setCategories(tags)}
       />
       <Input
         name="description"

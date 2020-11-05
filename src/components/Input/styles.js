@@ -28,6 +28,7 @@ export const StyledInput = styled.input`
   &:focus,
   &:active,
   &:hover {
+    outline: none;
     border: 1px solid ${THEME.PRIMARY};
   }
 `;
