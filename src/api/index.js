@@ -13,6 +13,7 @@ export const login = async () => {
         username: process.env.REACT_APP_OCTADESK_USERNAME,
       },
     });
+    localStorage.setItem('OCTADESK_TOKEN', response.data.token);
     axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
   } else {
     axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -32,5 +33,19 @@ export const createTicket = async (title, description, categories) => {
       }
     },
   });
+  return response.data;
+};
+
+export const listTickets = async (idRequester) => {
+  const response = await axiosInstance.get('/tickets', {
+    params: {
+      idRequester,
+    },
+  });
+  return response.data;
+};
+
+export const getTicket = async (idTicket) => {
+  const response = await axiosInstance.get(`/tickets/${idTicket}`);
   return response.data;
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/Input';
@@ -7,19 +7,12 @@ import Button from '../../components/Button';
 
 import { StyledForm } from './styles';
 
-import {
-  login,
-  createTicket,
-} from '../../api';
+import { createTicket } from '../../api';
 
 const Create = () => {
   const history = useHistory();
   const [categories, setCategories] = useState();
   const { errors, handleSubmit, register } = useForm();
-
-  useEffect(() => {
-    login();
-  }, []);
 
   const onSubmit = async ({ title, description }) => {
     console.log(categories);
