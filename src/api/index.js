@@ -18,6 +18,7 @@ export const login = async () => {
   } else {
     axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
+  return true;
 };
 
 export const createTicket = async (title, description, categories) => {

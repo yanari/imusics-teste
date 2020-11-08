@@ -1,39 +1,51 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { login } from './api';
 
 import Home from './pages/Home';
 import Create from './pages/Create';
 import Tickets from './pages/Tickets';
-import Ticket from './pages/Tickets/Ticket';
+import TicketPage from './pages/Tickets/Ticket';
 
 import Header from './components/Header';
 
-import { StyledContainer } from './styles';
+import {
+  StyledContainer,
+  StyledLoadingIcon,
+} from './styles';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    login();
+    const handleLogin = async () => {
+      const loggedIn = await login();
+      setIsLoggedIn(loggedIn);
+    };
+    handleLogin();
   }, []);
 
   return (
     <>
       <Header/>
       <StyledContainer>
-        <Switch>
-          <Route path="/create">
-            <Create/>
-          </Route>
-          <Route path="/tickets/:id">
-            <Ticket/>
-          </Route>
-          <Route path="/tickets">
-            <Tickets/>
-          </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
-        </Switch>
+        {isLoggedIn ? (
+          <Switch>
+            <Route path="/create">
+              <Create/>
+            </Route>
+            <Route path="/tickets/:id">
+              <TicketPage/>
+            </Route>
+            <Route path="/tickets">
+              <Tickets/>
+            </Route>
+            <Route path="/">
+              <Home/>
+            </Route>
+          </Switch>
+        ) : (
+          <StyledLoadingIcon/>
+        )}
       </StyledContainer>
     </>
   );

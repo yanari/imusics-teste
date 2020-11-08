@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import { listTickets } from '../../api';
+
+import Ticket from '../../components/Ticket';
+import { StyledContainer } from './styles';
 
 class Tickets extends Component {
   state = {
@@ -23,16 +25,11 @@ class Tickets extends Component {
   render() {
     if (this.state.tickets.length === 0) return <div>loading</div>;
     return (
-      <div>
+      <StyledContainer>
         {this.state.tickets.map((ticket) => {
-          return (
-            <Link key={ticket.id} to={`/tickets/${ticket.number}`}>
-              {ticket.summary}
-              Descrição: {ticket.description}
-            </Link>
-          )
+          return <Ticket ticket={ticket} key={ticket.id}/>
         })}
-      </div>
+      </StyledContainer>
     );
   }
 };

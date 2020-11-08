@@ -3,18 +3,19 @@ import { useParams } from 'react-router-dom';
 
 import { getTicket } from '../../../api';
 
-const Ticket = (props) => {
+const TicketPage = (props) => {
   const params = useParams();
   const [ticket, setTicket] = useState(null);
 
   useEffect(() => {
+    const getTicketRequest = async () => {
+      const response = await getTicket(params.id);
+      setTicket(response);
+    };
     getTicketRequest();
-  }, []);
+  }, [params.id]);
 
-  const getTicketRequest = async () => {
-    const response = await getTicket(params.id);
-    setTicket(response);
-  };
+  
 
   if (ticket === null) return <div>Loading</div>;
   return (
@@ -25,4 +26,4 @@ const Ticket = (props) => {
   );
 };
 
-export default Ticket;
+export default TicketPage;
