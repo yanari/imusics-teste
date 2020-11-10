@@ -5,18 +5,23 @@ import { StyledButton } from './styles';
 const Button = (props) => {
   const {
     children,
+    handleClick,
     type,
   } = props;
   return (
-    <StyledButton type={type}>
+    <StyledButton
+      onClick={handleClick || null}
+      type={type}
+    >
       {children}
     </StyledButton>
   );
 };
 
 Button.propTypes = {
-  type: PropTypes.oneOf(['submit', 'button', 'reset']),
   children: PropTypes.node.isRequired,
+  handleClick: PropTypes.func,
+  type: PropTypes.oneOf(['submit', 'button', 'reset']),
 };
 
 export default Button;

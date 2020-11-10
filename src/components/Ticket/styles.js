@@ -14,6 +14,7 @@ export const StyledTicket = styled(Link)`
   display: block;
   margin-bottom: 16px;
   padding: 16px;
+  text-align: left;
   text-decoration: none;
 
   &:hover {
@@ -22,10 +23,12 @@ export const StyledTicket = styled(Link)`
 `;
 
 export const StyledTitle = styled.h4`
-  font-weight: bold;
   color: ${THEME.PRIMARY};
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
 `;
 
 export const StyledDescription = styled.p`
-  
+  color: ${THEME.DISABLED};
 `;

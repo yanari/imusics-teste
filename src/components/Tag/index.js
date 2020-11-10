@@ -7,11 +7,12 @@ import {
 
 const Tag = (props) => {
   const {
+    tagColor,
     tagName,
     handleDelete,
   } = props;
   return (
-    <StyledTag>
+    <StyledTag tagColor={tagColor}>
       {tagName}
       {handleDelete && (
         <StyledCloseButton
@@ -25,6 +26,7 @@ const Tag = (props) => {
 };
 
 Tag.propTypes = {
+  tagColor: PropTypes.string,
   tagName: PropTypes.string.isRequired,
   handleDelete: PropTypes.func,
 };

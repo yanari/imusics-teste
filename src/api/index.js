@@ -37,6 +37,13 @@ export const createTicket = async (title, description, categories) => {
   return response.data;
 };
 
+export const uploadAttachment = async (file) => {
+  const response = await axiosInstance.post('/tickets/attachments/upload', {file}, {
+    'Content-Type': 'multipart/form-data',
+  });
+  return response.data;
+};
+
 export const listTickets = async (idRequester) => {
   const response = await axiosInstance.get('/tickets', {
     params: {
@@ -48,5 +55,10 @@ export const listTickets = async (idRequester) => {
 
 export const getTicket = async (idTicket) => {
   const response = await axiosInstance.get(`/tickets/${idTicket}`);
+  return response.data;
+};
+
+export const getTicketInteractions = async (idTicket) => {
+  const response = await axiosInstance.get(`/tickets/${idTicket}/interactions`);
   return response.data;
 };

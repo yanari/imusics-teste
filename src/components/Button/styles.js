@@ -8,6 +8,7 @@ export const StyledButton = styled.button`
   color: ${THEME.PRIMARY};
   font-size: 18px;
   padding: 8px 16px;
+  outline: none;
 
   &:hover {
     background-color: ${THEME.PRIMARY};

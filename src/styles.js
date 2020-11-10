@@ -13,4 +13,5 @@ export const StyledContainer = styled.main`
 export const StyledLoadingIcon = styled(Loading)`
   height: 64px;
   width: 64px;
+  transition: none;
 `;

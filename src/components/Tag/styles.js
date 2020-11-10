@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { THEME } from '../../constants';
 
 export const StyledTag = styled.li`
-  background-color: ${THEME.PRIMARY};
+  background-color: ${props => props.tagColor || THEME.PRIMARY};
   border-radius: 4px;
   color: white;
   flex-grow: 1;

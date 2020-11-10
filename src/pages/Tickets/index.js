@@ -4,6 +4,7 @@ import { listTickets } from '../../api';
 
 import Ticket from '../../components/Ticket';
 import { StyledContainer } from './styles';
+import { StyledLoadingIcon } from '../../styles';
 
 class Tickets extends Component {
   state = {
@@ -23,7 +24,7 @@ class Tickets extends Component {
   };
 
   render() {
-    if (this.state.tickets.length === 0) return <div>loading</div>;
+    if (this.state.tickets.length === 0) return <StyledLoadingIcon/>;
     return (
       <StyledContainer>
         {this.state.tickets.map((ticket) => {
