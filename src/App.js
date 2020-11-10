@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { IntlProvider } from 'react-intl';
 import { Switch, Route } from 'react-router-dom';
 import { login } from './api';
 
@@ -25,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <IntlProvider locale="pt-BR">
       <Header/>
       <StyledContainer>
         {isLoggedIn ? (
@@ -47,7 +48,7 @@ function App() {
           <StyledLoadingIcon/>
         )}
       </StyledContainer>
-    </>
+    </IntlProvider>
   );
 }
 
