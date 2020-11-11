@@ -5,6 +5,8 @@ import { getTicketInteractions } from '../../../../api';
 
 import { StyledLoadingIcon } from '../../../../styles';
 
+import ChatMessage from '../../../../components/ChatMessage';
+
 const TicketChat = ({ ticketNumber }) => {
   const [interactions, setInteractions] = useState(null);
   const { formatDate } = useIntl();
@@ -24,9 +26,7 @@ const TicketChat = ({ ticketNumber }) => {
   return (
     <div>
       {interactions.map(interaction => (
-        <div>
-          {formatDate(interaction.dateCreation, {minute: 'numeric', hour: 'numeric'})}
-        </div>
+        <ChatMessage interaction={interaction}/>
       ))}
     </div>
   );
