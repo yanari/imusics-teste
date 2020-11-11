@@ -1,15 +1,26 @@
 import styled from 'styled-components';
-import { THEME } from '../../../constants';
+import { THEME } from '../../constants';
 
 export const StyledContainer = styled.div`
+  position: relative;
   text-align: left;
 
   & > * {
     margin-bottom: 16px;
   }
+
+  & > .open-chat-button {
+    padding-left: 32px;
+    padding-right: 32px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 `;
 
 export const StyledTicketInfo = styled.div`
+  position: relative;
+
   & > * {
     margin-bottom: 16px;
   }

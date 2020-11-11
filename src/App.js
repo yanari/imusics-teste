@@ -6,7 +6,7 @@ import { login } from './api';
 import Home from './pages/Home';
 import Create from './pages/Create';
 import Tickets from './pages/Tickets';
-import TicketPage from './pages/Tickets/TicketPage';
+import TicketPage from './pages/TicketPage';
 
 import Header from './components/Header';
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getTicketInteractions } from '../../../../api';
+import { getTicketInteractions } from '../../../api';
 
-import { StyledLoadingIcon } from '../../../../styles';
+import { StyledLoadingIcon } from '../../../styles';
 
-import ChatMessage from '../../../../components/ChatMessage';
+import ChatMessage from '../../../components/ChatMessage';
 
 const TicketChat = ({ ticketNumber }) => {
   const [interactions, setInteractions] = useState(null);
