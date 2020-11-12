@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 
 import { StyledForm } from './styles';
 
-import { createTicket } from '../../api';
+import { octadeskApi } from '../../api';
 
 const Create = () => {
   const history = useHistory();
@@ -16,7 +16,7 @@ const Create = () => {
 
   const onSubmit = async ({ title, description }) => {
     console.log(categories);
-    const response = await createTicket(title, description, categories);
+    const response = await octadeskApi.createTicket(title, description, categories);
     localStorage.setItem('ID_REQUESTER', response.idRequester)
     history.push('/tickets');
   };

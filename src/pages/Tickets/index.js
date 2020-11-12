@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { listTickets } from '../../api';
+import { octadeskApi } from '../../api';
 
 import Ticket from '../../components/Ticket';
 import { StyledContainer } from './styles';
@@ -19,7 +19,7 @@ class Tickets extends Component {
   }
 
   getTicketsList = async (idRequester) => {
-    const ticketsList = await listTickets(idRequester);
+    const ticketsList = await octadeskApi.listTickets(idRequester);
     this.setState({tickets: ticketsList});
   };
 

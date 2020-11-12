@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { Switch, Route } from 'react-router-dom';
-import { login } from './api';
+import { octadeskApi } from './api';
 
 import Home from './pages/Home';
 import Create from './pages/Create';
@@ -19,7 +19,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const handleLogin = async () => {
-      const loggedIn = await login();
+      const loggedIn = await octadeskApi.login();
       setIsLoggedIn(loggedIn);
     };
     handleLogin();

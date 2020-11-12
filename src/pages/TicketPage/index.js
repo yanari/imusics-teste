@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getTicket } from '../../api';
+import { octadeskApi } from '../../api';
 import { StyledLoadingIcon } from '../../styles';
 import {
   StyledContainer,
@@ -23,7 +23,7 @@ const TicketPage = () => {
 
   useEffect(() => {
     const getTicketRequest = async () => {
-      const response = await getTicket(params.id);
+      const response = await octadeskApi.getTicket(params.id);
       setTicket(response);
     };
     getTicketRequest();

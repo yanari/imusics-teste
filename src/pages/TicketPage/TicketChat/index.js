@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getTicketInteractions } from '../../../api';
+import { octadeskApi } from '../../../api';
 
 import { StyledLoadingIcon } from '../../../styles';
 
@@ -12,7 +12,7 @@ const TicketChat = ({ ticketNumber }) => {
   const { formatDate } = useIntl();
   useEffect(() => {
     const getInteractions = async () => {
-      const response = await getTicketInteractions(ticketNumber);
+      const response = await octadeskApi.getTicketInteractions(ticketNumber);
       const humanInteractions = response.filter((interaction) => {
         return interaction.isHumanInteraction;
       });
