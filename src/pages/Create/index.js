@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 
 import { StyledForm } from './styles';
 
-import { octadeskApi, uploadFile } from '../../api';
+import { octadeskApi, awsApi } from '../../api';
 
 const Create = () => {
   const history = useHistory();
@@ -16,16 +16,15 @@ const Create = () => {
   const { errors, handleSubmit, register } = useForm();
 
   const onSubmit = async ({ title, description }) => {
-    console.log(categories);
-    const response = await octadeskApi.createTicket(title, description, categories);
+    const response = await octadeskApi.createTicket(title, description, categories, files);
     localStorage.setItem('ID_REQUESTER', response.idRequester)
     history.push('/tickets');
   };
 
   const handleFileInput = async (targetFiles) => {
     const file = targetFiles[0];
-    const res = await uploadFile(file.name, file);
-    console.log(res);
+    const fileUrl = await awsApi.uploadFile(file.name, file);
+    setFiles(fileUrl);
   };
 
   return (

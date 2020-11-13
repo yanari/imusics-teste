@@ -22,7 +22,7 @@ export class OctadeskAPI {
     return true;
   };
 
-  createTicket = async (title, description, categories) => {
+  createTicket = async (title, description, categories, attachment) => {
     const response = await this.a.post('/tickets', {
       summary: title,
       tags: categories,
@@ -30,7 +30,7 @@ export class OctadeskAPI {
         description: {
           content: description,
           attachments: [
-            {url: 'https://64.media.tumblr.com/8f768c4bc858a733aa90c0652426527c/adc995cc344cb89f-ce/s400x600/bc40056ec02d5e1e0de63d751966b3a29406c655.gifv'}
+            {url: attachment}
           ],
         }
       },
