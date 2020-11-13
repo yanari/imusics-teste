@@ -7,11 +7,12 @@ import Button from '../../components/Button';
 
 import { StyledForm } from './styles';
 
-import { octadeskApi } from '../../api';
+import { octadeskApi, uploadFile } from '../../api';
 
 const Create = () => {
   const history = useHistory();
-  const [categories, setCategories] = useState();
+  const [files, setFiles] = useState([]);
+  const [categories, setCategories] = useState([]);
   const { errors, handleSubmit, register } = useForm();
 
   const onSubmit = async ({ title, description }) => {
@@ -19,6 +20,12 @@ const Create = () => {
     const response = await octadeskApi.createTicket(title, description, categories);
     localStorage.setItem('ID_REQUESTER', response.idRequester)
     history.push('/tickets');
+  };
+
+  const handleFileInput = async (targetFiles) => {
+    const file = targetFiles[0];
+    const res = await uploadFile(file.name, file);
+    console.log(res);
   };
 
   return (
@@ -44,6 +51,7 @@ const Create = () => {
           required: 'A descrição é obrigatória.',
         })}
       />
+      <input type="file" onInput={(e) => handleFileInput(e.target.files)}/>
       <Button type="submit">
         Avançar
       </Button>
