@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
 
 import { octadeskApi } from '../../../api';
 
@@ -9,7 +8,7 @@ import ChatMessage from '../../../components/ChatMessage';
 
 const TicketChat = ({ ticketNumber }) => {
   const [interactions, setInteractions] = useState(null);
-  const { formatDate } = useIntl();
+  
   useEffect(() => {
     const getInteractions = async () => {
       const response = await octadeskApi.getTicketInteractions(ticketNumber);
