@@ -22,20 +22,19 @@ const ChatMessage = ({ interaction }) => {
     propertiesChanges,
   } = interaction;
   const { formatDate } = useIntl();
-  console.log(interaction);
   return (
     <StyledChatMessage>
       <StyledFlex>
         <StyledMessages>
-          {attachments.length > 0 && attachments.map(attachment => (
-            <a key={attachment.name} href={attachment.url} target="_blank" rel="noopener noreferrer">
-              <StyledAttachment/>
-            </a>
-          ))}
           {comments.length > 0 && comments.map(comment => (
             <StyledComment as={comment.type === 2 ? 'div' : null} key={comment.content}>
               {parse(comment.contentHtml)}
             </StyledComment>
+          ))}
+          {attachments.length > 0 && attachments.map(attachment => (
+            <a key={attachment.name} href={attachment.url} target="_blank" rel="noopener noreferrer">
+              <StyledAttachment/>
+            </a>
           ))}
         </StyledMessages>
         <Avatar

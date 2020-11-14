@@ -9,6 +9,10 @@ export const StyledContainer = styled.div`
     margin-bottom: 16px;
   }
 
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
   & > .open-chat-button {
     padding-left: 32px;
     padding-right: 32px;

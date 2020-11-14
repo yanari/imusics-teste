@@ -32,7 +32,6 @@ const TicketPage = () => {
   if (ticket === null) return <StyledLoadingIcon/>;
   return (
     <StyledContainer>
-      {console.log(ticket)}
       <StyledTicketInfo>
         <StyledTicketTitle>{ticket.summary}</StyledTicketTitle>
         <StyledTicketDescription>{ticket.description}</StyledTicketDescription>

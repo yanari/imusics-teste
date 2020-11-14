@@ -11,6 +11,7 @@ export const StyledChatMessage = styled.div`
 export const StyledFlex = styled.div`
   align-items: flex-end;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: flex-end;
 `;
 
@@ -31,6 +32,7 @@ export const StyledComment = styled.p`
   border-radius: 16px;
   border-bottom-right-radius: 0;
   color: white;
+  direction: initial;
   display: inline-block;
   margin-right: 8px;
   padding: 8px 16px;
