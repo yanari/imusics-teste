@@ -15,6 +15,7 @@ const InputTags = (props) => {
     label,
     name,
     handleSelectedTags,
+    placeholder,
   } = props;
   const {
     register,
@@ -27,16 +28,25 @@ const InputTags = (props) => {
     const keyPressed = watch(name).slice(watch(name).length - 1);
     if (keyPressed === ',') {
       const tag = watch(name).slice(0, -1);
-      setTags([ ...tags, tag ]);
-      setValue(name, '');
-      handleSelectedTags([ ...tags, tag ]);
+      addTag(tag);
     }
+  };
+
+  const addTag = (tag) => {
+    setTags([ ...tags, tag ]);
+    setValue(name, '');
+    handleSelectedTags([ ...tags, tag ]);
   };
 
   const handleKeyDown = (event) => {
     const isBackspace = event.key === 'Backspace';
+    const isEnter = event.key === 'Enter';
     if (isBackspace) {
       handleDeleteTag();
+    }
+    if (isEnter) {
+      event.preventDefault();
+      addTag(watch(name));
     }
   };
 
@@ -74,6 +84,7 @@ const InputTags = (props) => {
           ref={register}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          placeholder={placeholder}
         />
       </StyledInputTagsContainer>
     </>
@@ -85,6 +96,7 @@ InputTags.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   handleSelectedTags: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 InputTags.defaultProps = {

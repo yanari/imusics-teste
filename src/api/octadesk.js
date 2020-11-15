@@ -23,18 +23,13 @@ export class OctadeskAPI {
   };
 
   createTicket = async (title, description, categories, attachment) => {
-    const response = await this.a.post('/tickets', {
+    const ticket = {
       summary: title,
       tags: categories,
-      comments: {
-        description: {
-          content: description,
-          attachments: [
-            {url: attachment}
-          ],
-        }
-      },
-    });
+      comments: {description: {content: description,},},
+    };
+    if (attachment !== null) ticket.comments.description.attachments = [{url: attachment}];
+    const response = await this.a.post('/tickets', ticket);
     return response.data;
   };
   

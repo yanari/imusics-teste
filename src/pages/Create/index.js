@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/Input';
+import InputFile from '../../components/Input/InputFile';
 import InputTags from '../../components/Input/InputTags';
 import Button from '../../components/Button';
 
@@ -11,7 +12,7 @@ import { octadeskApi, awsApi } from '../../api';
 
 const Create = () => {
   const history = useHistory();
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(null);
   const [categories, setCategories] = useState([]);
   const { errors, handleSubmit, register } = useForm();
 
@@ -36,11 +37,13 @@ const Create = () => {
         inputRef={register({
           required: 'O título é obrigatório.',
         })}
+        placeholder="Digite o título do ticket"
       />
       <InputTags
         label="Categoria"
         name="category"
         handleSelectedTags={(tags) => setCategories(tags)}
+        placeholder="Digite as categorias do ticket e as separe por vírgula"
       />
       <Input
         name="description"
@@ -49,11 +52,18 @@ const Create = () => {
         inputRef={register({
           required: 'A descrição é obrigatória.',
         })}
+        placeholder="Digite uma breve descrição do ticket"
       />
-      <input type="file" onInput={(e) => handleFileInput(e.target.files)}/>
-      <Button type="submit">
-        Avançar
-      </Button>
+      <div>
+        <InputFile
+          handleFileInput={(e) => handleFileInput(e.target.files)}
+          label="Anexar arquivo"
+          name="attachment"
+        />
+        <Button type="submit">
+          Avançar
+        </Button>
+      </div>
     </StyledForm>
   );
 };

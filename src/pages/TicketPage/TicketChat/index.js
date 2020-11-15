@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 
 import { octadeskApi } from '../../../api';
 
@@ -6,6 +6,7 @@ import { StyledLoadingIcon } from '../../../styles';
 import { StyledTicketChat } from './styles';
 
 import ChatMessage from '../../../components/ChatMessage';
+import ChatArea from '../../../components/ChatArea';
 
 class TicketChat extends Component {
   state = {
@@ -45,44 +46,13 @@ class TicketChat extends Component {
         height={height}
         ref={el => (this.container = el)}
       >
-        <div>
-          {interactions.map(interaction => (
-            <ChatMessage key={interaction.id} interaction={interaction}/>
-          ))}
-        </div>
+        {interactions.map(interaction => (
+          <ChatMessage key={interaction.id} interaction={interaction}/>
+        ))}
+        <ChatArea/>
       </StyledTicketChat>
     );
   }
 }
-
-// const TicketChat = ({ ticketNumber }) => {
-//   const chatRef = useRef(null);
-//   const [interactions, setInteractions] = useState(null);
-//   const [height, setHeight] = useState(null);
-  
-//   useEffect(() => {
-//     const getInteractions = async () => {
-//       const response = await octadeskApi.getTicketInteractions(ticketNumber);
-//       const humanInteractions = response.filter((interaction) => {
-//         return interaction.isHumanInteraction;
-//       });
-//       setInteractions(humanInteractions);
-//     };
-//     getInteractions();
-//   }, [ticketNumber]);
-
-//   useEffect(() => {
-//     if (interactions !== null) {
-//       const distanceToTop = chatRef.current.getBoundingClientRect().top;
-//       setHeight(window.innerHeight - distanceToTop);
-//     }
-//   }, [interactions]);
-
-//   if (interactions === null) return <StyledLoadingIcon/>;
-//   console.log(height);
-//   return (
-    
-//   );
-// };
 
 export default TicketChat;
