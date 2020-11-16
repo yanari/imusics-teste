@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { THEME } from '../../constants';
-import { ReactComponent as Attachment } from './attachment.svg';
+import { ReactComponent as Attachment } from '../../assets/attachment.svg';
 
 import { SILVER_CHALICE } from '../../constants';
 

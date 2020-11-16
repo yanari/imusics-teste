@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { StyledInputFile } from './styles';
+import {
+  StyledInputFile,
+  StyledIcon,
+} from './styles';
 import { StyledLabel } from '../styles';
 import { StyledAttachment } from '../../ChatMessage/styles';
 
@@ -13,12 +16,14 @@ const InputFile = (props) => {
   return (
     <StyledInputFile>
       {label && <StyledLabel for={name}>{label}: </StyledLabel>}
-      <input
-        type="file"
-        name={name}
-        onInput={handleInput}
-      />
-      <StyledAttachment/>
+      <StyledIcon role="button">
+        <input
+          type="file"
+          name={name}
+          onInput={handleInput}
+        />
+        <StyledAttachment/>
+      </StyledIcon>
     </StyledInputFile>
   );
 };

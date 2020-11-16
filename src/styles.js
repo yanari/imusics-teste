@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MAX_WIDTH } from './constants';
 
-import { ReactComponent as Loading } from './loading.svg';
+import { ReactComponent as Loading } from './assets/loading.svg';
 
 export const StyledContainer = styled.main`
   margin: auto;
