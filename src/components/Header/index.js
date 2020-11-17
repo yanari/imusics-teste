@@ -13,7 +13,7 @@ const Header = () => {
       <StyledNav>
         <StyledList>
           <StyledListItem>
-            <StyledLink to="/create">
+            <StyledLink to="/">
               Create Ticket
             </StyledLink>
           </StyledListItem>

@@ -30,14 +30,14 @@ function App() {
       <StyledContainer>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/create">
-              <Create/>
-            </Route>
             <Route path="/tickets/:id">
               <TicketPage/>
             </Route>
             <Route path="/tickets">
               <Tickets/>
+            </Route>
+            <Route path="/">
+              <Create/>
             </Route>
           </Switch>
         ) : (
