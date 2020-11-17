@@ -2,6 +2,7 @@ import React, {
   useState,
   useRef,
 } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   StyledInputFile,
@@ -15,9 +16,11 @@ const InputFile = (props) => {
   const ref = useRef(null);
   const [fileName, setFileName] = useState(null);
   const {
+    className,
     handleInput,
     label,
     name,
+    showFileName,
   } = props;
 
   const onInput = (event) => {
@@ -27,7 +30,7 @@ const InputFile = (props) => {
   };
 
   return (
-    <StyledInputFile>
+    <StyledInputFile className={className}>
       {label && <StyledLabel htmlFor={name}>{label}: </StyledLabel>}
       <StyledIcon role="button">
         <input
@@ -38,9 +41,21 @@ const InputFile = (props) => {
         />
         <StyledAttachment/>
       </StyledIcon>
-      {fileName && <StyledFileName>{fileName}</StyledFileName>}
+      {(fileName && showFileName) && <StyledFileName>{fileName}</StyledFileName>}
     </StyledInputFile>
   );
+};
+
+InputFile.propTypes = {
+  className: PropTypes.string,
+  handleInput: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  showFileName: PropTypes.bool,
+};
+
+InputFile.defaultProps = {
+  showFileName: true,
 };
 
 export default InputFile;

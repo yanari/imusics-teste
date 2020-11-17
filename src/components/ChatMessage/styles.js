@@ -6,6 +6,10 @@ import { SILVER_CHALICE } from '../../constants';
 
 export const StyledChatMessage = styled.div`
   margin-bottom: 8px;
+
+  &:last-of-type {
+    margin-bottom: 64px;
+  }
 `;
 
 export const StyledFlex = styled.div`

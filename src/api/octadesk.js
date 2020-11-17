@@ -32,11 +32,13 @@ export class OctadeskAPI {
     const response = await this.a.post('/tickets', ticket);
     return response.data;
   };
-  
-  uploadAttachment = async (file) => {
-    const response = await this.a.post('/tickets/attachments/upload', {file}, {
-      'Content-Type': 'multipart/form-data',
-    });
+
+  updateTicket = async (idTicket, message, attachment) => {
+    const ticket = {
+      comments: {description: {content: message,},},
+    };
+    if (attachment !== null) ticket.comments.description.attachments = [{url: attachment}];
+    const response = await this.a.put(`/tickets/${idTicket}`, ticket);
     return response.data;
   };
   

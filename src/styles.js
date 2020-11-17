@@ -7,6 +7,7 @@ export const StyledContainer = styled.main`
   margin: auto;
   margin-top: 32px;
   max-width: ${MAX_WIDTH};
+  position: relative;
   text-align: center;
 `;
 

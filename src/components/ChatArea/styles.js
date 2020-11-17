@@ -3,21 +3,12 @@ import { THEME } from '../../constants';
 
 import { ReactComponent as Arrow } from '../../assets/arrow.svg';
 
-export const StyledChatArea = styled.div`
+export const StyledChatArea = styled.form`
+  bottom: 8px;
   display: flex;
   direction: ltr;
-
-  & > .chat-area__input {
-    margin-bottom: 0;
-    margin-right: 8px;
-
-    & > input {
-      border-color: ${THEME.PRIMARY};
-      border-radius: 48px;
-      font-size: 14px;
-      padding: 16px;
-    }
-  }
+  position: absolute;
+  width: 100%;
 
   & > button {
     align-items: center;
@@ -29,6 +20,31 @@ export const StyledChatArea = styled.div`
 
     &:hover > svg > path {
       fill: white;
+    }
+  }
+`;
+
+export const StyledMessageField = styled.div`
+  border: 1px solid ${THEME.PRIMARY};
+  border-radius: 48px;
+  display: flex;
+  flex: 1;
+  margin-right: 8px;
+
+  & > .input-file__chat-area {
+    margin-left: 8px;
+  }
+
+  & > .chat-area__input {
+    margin-bottom: 0;
+    flex: 1;
+
+    & > input {
+      border: none;
+      border-radius: 48px;
+      font-size: 14px;
+      padding: 16px;
+      width: 100%;
     }
   }
 `;
