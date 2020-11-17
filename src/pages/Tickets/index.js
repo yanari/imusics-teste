@@ -24,7 +24,7 @@ class Tickets extends Component {
   };
 
   render() {
-    if (!this.state.hasId) return <p>Nenhum ticket ainda.</p>
+    if (!this.state.hasId) return <p>Crie um ticket para ver sua listagem.</p>
     if (this.state.tickets.length === 0) return <StyledLoadingIcon/>;
     return (
       <StyledContainer>
