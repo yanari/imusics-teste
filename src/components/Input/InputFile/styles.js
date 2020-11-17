@@ -31,3 +31,12 @@ export const StyledIcon = styled.div`
     fill: ${THEME.DISABLED};
   }
 `;
+
+export const StyledFileName = styled.p`
+  color: ${THEME.DISABLED};
+  font-size: 12px;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;

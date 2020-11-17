@@ -1,10 +1,17 @@
 import React from 'react';
 
+import Card from '../../components/Card';
+
+import { StyledContainer } from './styles';
+
 const Home = () => {
   return (
-    <div>
-      Home page
-    </div>
+    <StyledContainer>
+      Fazer login como:
+      <Card>
+        Conta root
+      </Card>
+    </StyledContainer>
   );
 };
 

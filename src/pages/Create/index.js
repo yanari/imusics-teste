@@ -6,26 +6,28 @@ import InputFile from '../../components/Input/InputFile';
 import InputTags from '../../components/Input/InputTags';
 import Button from '../../components/Button';
 
-import { StyledForm } from './styles';
+import {
+  StyledForm,
+  StyledActionButtons,
+} from './styles';
 
 import { octadeskApi, awsApi } from '../../api';
 
 const Create = () => {
   const history = useHistory();
-  const [files, setFiles] = useState(null);
+  const [file, setFile] = useState(null);
   const [categories, setCategories] = useState([]);
   const { errors, handleSubmit, register } = useForm();
 
   const onSubmit = async ({ title, description }) => {
-    const response = await octadeskApi.createTicket(title, description, categories, files);
+    const response = await octadeskApi.createTicket(title, description, categories, file);
     localStorage.setItem('ID_REQUESTER', response.idRequester)
     history.push('/tickets');
   };
 
-  const handleFileInput = async (targetFiles) => {
-    const file = targetFiles[0];
-    const fileUrl = await awsApi.uploadFile(file.name, file);
-    setFiles(fileUrl);
+  const handleFileInput = async (targetFile) => {
+    const fileUrl = await awsApi.uploadFile(targetFile.name, targetFile);
+    setFile(fileUrl);
   };
 
   return (
@@ -54,16 +56,16 @@ const Create = () => {
         })}
         placeholder="Digite uma breve descrição do ticket"
       />
-      <div>
+      <StyledActionButtons>
         <InputFile
-          handleFileInput={(e) => handleFileInput(e.target.files)}
+          handleInput={handleFileInput}
           label="Anexar arquivo"
           name="attachment"
         />
         <Button type="submit">
           Avançar
         </Button>
-      </div>
+      </StyledActionButtons>
     </StyledForm>
   );
 };

@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const StyledForm = styled.form`
   margin: auto;
   width: 480px;
+`;
 
-  & :last-child {
-    display: flex;
-    justify-content: space-around;
-  }
+export const StyledActionButtons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  max-width: 100%;
 `;

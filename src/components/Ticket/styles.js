@@ -3,23 +3,11 @@ import { Link } from 'react-router-dom';
 
 import { THEME } from '../../constants';
 
-const BOX_SHADOW = {
-  DEFAULT: THEME.FONT_COLOR + 40,
-  HOVERED: THEME.FONT_COLOR + 80,
-};
+import { card } from '../Card/styles';
 
 export const StyledTicket = styled(Link)`
-  border-radius: 8px;
-  box-shadow: 2px 2px 8px ${BOX_SHADOW.DEFAULT};
-  display: block;
-  margin-bottom: 16px;
-  padding: 16px;
-  text-align: left;
+  ${card}
   text-decoration: none;
-
-  &:hover {
-    box-shadow: 2px 2px 8px ${BOX_SHADOW.HOVERED};
-  }
 `;
 
 export const StyledTitle = styled.h4`
