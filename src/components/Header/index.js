@@ -13,11 +13,6 @@ const Header = () => {
       <StyledNav>
         <StyledList>
           <StyledListItem>
-            <StyledLink to="/">
-              Home
-            </StyledLink>
-          </StyledListItem>
-          <StyledListItem>
             <StyledLink to="/create">
               Create Ticket
             </StyledLink>

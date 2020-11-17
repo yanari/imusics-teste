@@ -3,7 +3,6 @@ import { IntlProvider } from 'react-intl';
 import { Switch, Route } from 'react-router-dom';
 import { octadeskApi } from './api';
 
-import Home from './pages/Home';
 import Create from './pages/Create';
 import Tickets from './pages/Tickets';
 import TicketPage from './pages/TicketPage';
@@ -39,9 +38,6 @@ function App() {
             </Route>
             <Route path="/tickets">
               <Tickets/>
-            </Route>
-            <Route path="/">
-              <Home/>
             </Route>
           </Switch>
         ) : (

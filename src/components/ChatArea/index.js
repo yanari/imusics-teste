@@ -1,6 +1,10 @@
 import React from 'react';
-import { StyledChatArea } from './styles';
+import {
+  StyledChatArea,
+  StyledSendIcon,
+} from './styles';
 
+import Button from '../Button';
 import Input from '../Input';
 
 const ChatArea = () => {
@@ -10,6 +14,9 @@ const ChatArea = () => {
         className="chat-area__input"
         name="chat"
       />
+      <Button>
+        <StyledSendIcon/>
+      </Button>
     </StyledChatArea>
   );
 };
