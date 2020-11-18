@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { octadeskApi } from '../../api';
 
 import Ticket from '../../components/Ticket';
+import TicketsEmpty from './TicketsEmpty';
+
 import { StyledContainer } from './styles';
 import { StyledLoadingIcon } from '../../styles';
 
@@ -24,7 +26,7 @@ class Tickets extends Component {
   };
 
   render() {
-    if (!this.state.hasId) return <p>Crie um ticket para ver sua listagem.</p>
+    if (!this.state.hasId) return <TicketsEmpty/>;
     if (this.state.tickets.length === 0) return <StyledLoadingIcon/>;
     return (
       <StyledContainer>
