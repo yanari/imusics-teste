@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { octadeskApi, awsApi } from '../../../api';
 
 import { StyledLoadingIcon } from '../../../styles';
-import { StyledTicketChat } from './styles';
+import {
+  StyledTicketChat,
+  StyledChatMessagesList,
+} from './styles';
 
 import ChatMessage from '../../../components/ChatMessage';
 import ChatArea from '../../../components/ChatArea';
@@ -73,12 +76,14 @@ class TicketChat extends Component {
         height={height}
         ref={el => (this.container = el)}
       >
-        {interactions.map(interaction => (
-          <ChatMessage
-            key={interaction.id}
-            interaction={interaction}
-          />
-        ))}
+        <StyledChatMessagesList>
+          {interactions.map(interaction => (
+            <ChatMessage
+              key={interaction.id}
+              interaction={interaction}
+            />
+          ))}
+        </StyledChatMessagesList>
         <ChatArea
           handleUpload={this.handleUploadFile}
           handleSend={this.handleUpdateTicket}
