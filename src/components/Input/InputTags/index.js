@@ -67,7 +67,7 @@ const InputTags = (props) => {
     <>
       {label && <StyledInputTagsLabel>{label}</StyledInputTagsLabel>}
       <StyledInputTagsContainer>
-        {tags && (
+        {(tags && tags.length > 0) && (
           <StyledTagList>
             {tags.map(tag => (
               <Tag

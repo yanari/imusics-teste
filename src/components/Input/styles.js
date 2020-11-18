@@ -22,8 +22,9 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
   border: 1px solid ${props => props.error ? THEME.ERROR : ''};
   border-radius: 2px;
-  min-width: 480px;
+  max-width: 480px;
   padding: 8px;
+  width: 100%;
 
   &:focus,
   &:active,

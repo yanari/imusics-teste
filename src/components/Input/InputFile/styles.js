@@ -35,8 +35,12 @@ export const StyledIcon = styled.div`
 export const StyledFileName = styled.p`
   color: ${THEME.DISABLED};
   font-size: 12px;
-  max-width: 200px;
+  max-width: calc(100vw - 216px);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+
+  @media (min-width: 768px) {
+    max-width: 200px;
+  }
 `;
