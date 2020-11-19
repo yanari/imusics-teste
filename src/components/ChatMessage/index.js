@@ -45,10 +45,12 @@ const ChatMessage = ({ interaction }) => {
           invisible={!isNewInteraction}
         />
       </StyledFlex>
-      <StyledParagraph>
-        {propertiesChanges.status && <>Mudou o status para: <b>{propertiesChanges.status}</b> | </>}
-        {isNewInteraction && formatDate(dateCreation, { minute: 'numeric', hour: 'numeric'})}
-      </StyledParagraph>
+      {(isNewInteraction || propertiesChanges.status) && (
+        <StyledParagraph>
+          {propertiesChanges.status && <>Mudou o status para: <b>{propertiesChanges.status}</b> | </>}
+          {isNewInteraction && formatDate(dateCreation, { minute: 'numeric', hour: 'numeric'})}
+        </StyledParagraph>
+      )}
     </StyledChatMessage>
   );
 };

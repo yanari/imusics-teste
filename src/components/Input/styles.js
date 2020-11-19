@@ -20,7 +20,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  border: 1px solid ${props => props.error ? THEME.ERROR : ''};
+  border: 1px solid ${props => props.error ? THEME.ERROR : THEME.FONT_COLOR};
   border-radius: 2px;
   max-width: 480px;
   padding: 8px;
