@@ -29,13 +29,13 @@ export const StyledParagraph = styled.p`
 
 export const StyledComment = styled.p`
   background-color: ${SILVER_CHALICE};
-  border-radius: 16px;
+  border-radius: 24px;
   border-bottom-right-radius: 0;
   color: white;
   direction: initial;
   display: inline-block;
   margin-right: 8px;
-  padding: 8px 16px;
+  padding: 16px;
 
   & * {
     color: white;
