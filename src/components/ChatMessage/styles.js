@@ -33,7 +33,6 @@ export const StyledComment = styled.p`
   border-bottom-right-radius: 0;
   color: white;
   direction: initial;
-  display: inline-block;
   margin-right: 8px;
   padding: 16px;
 
