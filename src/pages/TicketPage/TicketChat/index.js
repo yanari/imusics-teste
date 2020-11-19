@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { octadeskApi, awsApi } from '../../../api';
+import { mapNewInteractions } from '../../../utils';
 
 import { StyledLoadingIcon } from '../../../styles';
 import {
@@ -34,11 +35,10 @@ class TicketChat extends Component {
 
   getTicketInteractions = async () => {
     const response = await octadeskApi.getTicketInteractions(this.props.ticketNumber);
-    const humanInteractions = response.filter((interaction) => {
-      return interaction.isHumanInteraction;
-    });
+    const humanInteractions = response.filter((interaction) => interaction.isHumanInteraction);
+    const interactions = mapNewInteractions(humanInteractions);
     this.setState({
-      interactions: humanInteractions,
+      interactions,
       loading: false,
     });
   };
@@ -77,12 +77,14 @@ class TicketChat extends Component {
         ref={el => (this.container = el)}
       >
         <StyledChatMessagesList>
-          {interactions.map(interaction => (
-            <ChatMessage
-              key={interaction.id}
-              interaction={interaction}
-            />
-          ))}
+          {interactions.map(interaction => {
+            return (
+              <ChatMessage
+                key={interaction.id}
+                interaction={interaction}
+              />
+            )
+          })}
         </StyledChatMessagesList>
         <ChatArea
           handleUpload={this.handleUploadFile}

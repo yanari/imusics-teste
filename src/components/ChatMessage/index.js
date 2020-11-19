@@ -20,10 +20,11 @@ const ChatMessage = ({ interaction }) => {
     dateCreation,
     person,
     propertiesChanges,
+    isNewInteraction,
   } = interaction;
   const { formatDate } = useIntl();
   return (
-    <StyledChatMessage>
+    <StyledChatMessage isNewInteraction={isNewInteraction}>
       <StyledFlex>
         <StyledMessages>
           {comments.length > 0 && comments.map(comment => (
@@ -41,11 +42,12 @@ const ChatMessage = ({ interaction }) => {
           avatarName={person.avatarName}
           name={person.name}
           thumbUrl={person.thumbUrl}
+          invisible={!isNewInteraction}
         />
       </StyledFlex>
       <StyledParagraph>
         {propertiesChanges.status && <>Mudou o status para: <b>{propertiesChanges.status}</b> | </>}
-        {formatDate(dateCreation, { minute: 'numeric', hour: 'numeric'})}
+        {isNewInteraction && formatDate(dateCreation, { minute: 'numeric', hour: 'numeric'})}
       </StyledParagraph>
     </StyledChatMessage>
   );

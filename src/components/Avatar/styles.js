@@ -6,6 +6,7 @@ export const StyledAvatar = styled.img`
   border-radius: 50%;
   height: 45px;
   width: 45px;
+  opacity: ${props => props.invisible ? '0' : '1'};
 
   ${props => props.initials && `
     align-items: center;
