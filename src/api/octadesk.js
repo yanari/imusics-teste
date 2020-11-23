@@ -22,14 +22,14 @@ export class OctadeskAPI {
     return true;
   };
 
-  createTicket = async (title, description, categories, attachment) => {
-    const ticket = {
-      summary: title,
-      tags: categories,
-      comments: {description: {content: description,},},
+  createTicket = async (ticket) => {
+    const parsedTicket = {
+      summary: ticket.title,
+      tags: ticket.categories,
+      comments: {description: {content: ticket.description,},},
     };
-    if (attachment !== null) ticket.comments.description.attachments = [{url: attachment}];
-    const response = await this.a.post('/tickets', ticket);
+    if (ticket.file !== null) parsedTicket.comments.description.attachments = [{url: ticket.file}];
+    const response = await this.a.post('/tickets', parsedTicket);
     return response.data;
   };
 

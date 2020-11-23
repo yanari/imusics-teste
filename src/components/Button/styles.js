@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
   border-radius: 4px;
   color: ${THEME.PRIMARY};
   font-size: 18px;
-  padding: 8px 16px;
+  padding: 8px 48px;
   outline: none;
 
   &:hover {

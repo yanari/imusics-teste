@@ -1,72 +1,58 @@
-import React, { useState } from 'react';
+import React, {
+  useReducer,
+  useContext,
+  useState,
+} from 'react';
+import FormContext from '../../context';
 import { useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import Input from '../../components/Input';
-import InputFile from '../../components/Input/InputFile';
-import InputTags from '../../components/Input/InputTags';
 import Button from '../../components/Button';
+import { StyledLoadingIcon } from '../../styles';
 
-import {
-  StyledForm,
-  StyledActionButtons,
-} from './styles';
+import StepOne from './StepOne';
+import StepTwo from './StepTwo';
+import StepThree from './StepThree';
+import StepFour from './StepFour';
 
-import { octadeskApi, awsApi } from '../../api';
+import { octadeskApi } from '../../api';
 
 const Create = () => {
+  const form = useContext(FormContext);
   const history = useHistory();
-  const [file, setFile] = useState(null);
-  const [categories, setCategories] = useState([]);
-  const { errors, handleSubmit, register } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [state, dispatch] = useReducer((state, action) => {
+    return {
+      ...state,
+      ...action,
+    };
+  }, form);
 
-  const onSubmit = async ({ title, description }) => {
-    const response = await octadeskApi.createTicket(title, description, categories, file);
-    localStorage.setItem('ID_REQUESTER', response.idRequester)
+  const onSubmit = async () => {
+    dispatch({step: 1, done: false});
+    setLoading(true);
+    const response = await octadeskApi.createTicket(state);
+    localStorage.setItem('ID_REQUESTER', response.idRequester);
+    setLoading(false);
     history.push('/tickets');
+
   };
 
-  const handleFileInput = async (targetFile) => {
-    const fileUrl = await awsApi.uploadFile(targetFile.name, targetFile);
-    setFile(fileUrl);
-  };
+  if (loading) return <StyledLoadingIcon/>;
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        name="title"
-        error={errors.title}
-        label="Título"
-        inputRef={register({
-          required: 'O título é obrigatório.',
-        })}
-        placeholder="Digite o título do ticket"
-      />
-      <InputTags
-        label="Categoria"
-        name="category"
-        handleSelectedTags={(tags) => setCategories(tags)}
-        placeholder="Digite as categorias do ticket e as separe por vírgula"
-      />
-      <Input
-        name="description"
-        error={errors.description}
-        label="Descrição"
-        inputRef={register({
-          required: 'A descrição é obrigatória.',
-        })}
-        placeholder="Digite uma breve descrição do ticket"
-      />
-      <StyledActionButtons>
-        <InputFile
-          handleInput={handleFileInput}
-          label="Anexar arquivo"
-          name="attachment"
-        />
-        <Button type="submit">
-          Avançar
+    <FormContext.Provider value={state}>
+      <StepOne dispatch={dispatch}/>
+      <StepTwo dispatch={dispatch}/>
+      <StepThree dispatch={dispatch}/>
+      <StepFour dispatch={dispatch}/>
+      {state.done && (
+        <Button
+          handleClick={onSubmit}
+          type="button"
+        >
+          Enviar
         </Button>
-      </StyledActionButtons>
-    </StyledForm>
+      )}
+    </FormContext.Provider>
   );
 };
 

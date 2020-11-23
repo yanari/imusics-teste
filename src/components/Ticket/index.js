@@ -7,7 +7,6 @@ import {
 } from './styles';
 
 const Ticket = ({ ticket }) => {
-  console.log(ticket);
   return (
     <StyledTicket to={`/tickets/${ticket.number}`}>
       <StyledTitle>{ticket.summary}</StyledTitle>
